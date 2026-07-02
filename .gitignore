@@ -1,0 +1,14 @@
+# Local, machine-specific Claude Code permissions (absolute paths, not portable)
+.claude/settings.local.json
+
+# OS / editor cruft
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Arduino build output
+build/
+*.hex
+*.elf
