@@ -1,0 +1,72 @@
+{
+  "//": "Example Claude Code hook config for the Arduino LCD status display.",
+  "//_usage": "Merge the \"hooks\" block into ~/.claude/settings.json (user-level) or .claude/settings.json (project-level). $CLAUDE_PROJECT_DIR expands to this repo's root, so it works if the repo is your project directory; otherwise replace it with an absolute path to scripts/lcd_status.py.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/scripts/lcd_status.py\" SessionStart",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/scripts/lcd_status.py\" UserPromptSubmit",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/scripts/lcd_status.py\" PreToolUse",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/scripts/lcd_status.py\" Notification",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/scripts/lcd_status.py\" Stop",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/scripts/lcd_status.py\" SessionEnd",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -65,17 +65,17 @@ Claude Code hook  ->  scripts/lcd_status.py  ->  Unix socket  ->  scripts/led_da
 ## Setup
 
 1. Flash `arduino/status_led/status_led.ino` to the board (`arduino-cli` or the Arduino IDE).
-2. Wire the hooks in Claude Code's `settings.json` to run `scripts/lcd_status.py <EventName>`
-   for `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `Notification`, `Stop`, `SessionEnd`.
-3. Requires Python 3 with [`pyserial`](https://pypi.org/project/pyserial/). The daemon
-   auto-starts on the first hook call.
+2. Install Python 3 with [`pyserial`](https://pypi.org/project/pyserial/) (`pip install pyserial`).
+3. Register the hooks: merge the `hooks` block from [`settings.example.json`](settings.example.json)
+   into `~/.claude/settings.json` (or a project-level `.claude/settings.json`). It runs
+   `scripts/lcd_status.py <EventName>` for `SessionStart`, `UserPromptSubmit`, `PreToolUse`,
+   `Notification`, `Stop`, and `SessionEnd`. The daemon auto-starts on the first hook call.
 
 > **Note:** the daemon holds the serial port, so kill it before `arduino-cli upload` and restart
 > it after (it will auto-restart on the next hook otherwise).
 
 ## Notes / limitations
 
-- The `arduino/lcd_test/` and `arduino/lcd_pin_scan/` sketches are bring-up/diagnostic helpers.
 - Live 5-hour usage-% display was abandoned: Claude Code's `statusLine` command is only invoked
   in an interactive terminal REPL, not in Claude Desktop's headless agent mode, so the percentage
   can't be obtained there. Ordinary event hooks fire fine in both.
